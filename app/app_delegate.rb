@@ -1,4 +1,6 @@
 class AppDelegate
+  attr_accessor :window
+
   def application(application, didFinishLaunchingWithOptions:launchOptions)
     rootViewController = MainViewController.alloc.init
     rootViewController.title = 'RubyMotionSegment'
@@ -6,9 +8,9 @@ class AppDelegate
 
     navigationController = UINavigationController.alloc.initWithRootViewController(rootViewController)
 
-    @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
-    @window.rootViewController = navigationController
-    @window.makeKeyAndVisible
+    self.window ||= UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+    self.window.rootViewController = navigationController
+    self.window.makeKeyAndVisible
 
     # Never run synchronously on the main ui thread.
     configure_segment_async
